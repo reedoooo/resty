@@ -1,0 +1,10 @@
+@import '/src/Style/ThemeColors.scss';
+
+header {
+  border-bottom: 2px solid $lightSeaGreen;
+  color: $pokeWhite;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  background-color: $charcoal;
+}

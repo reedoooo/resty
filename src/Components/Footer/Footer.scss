@@ -1,0 +1,9 @@
+@import '/src/Style/ThemeColors.scss';
+
+footer {
+  background: $charcoal;
+  border-top: 2px solid $lightSeaGreen;
+  padding: 1em 3em;
+  margin: 0;
+  text-align: center;
+}
