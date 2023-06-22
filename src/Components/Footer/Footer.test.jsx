@@ -1,21 +1,19 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Footer from './index.jsx';
+import '@testing-library/jest-dom/extend-expect';
 
-describe('Footer component', () => {
-  test('renders the footer with the author name', () => {
-    const testAuthor = 'Test Author';
-    render(<Footer author={testAuthor} />);
-    
-    const footerElement = screen.getByTestId('footer');
-    expect(footerElement).toBeInTheDocument();
-    expect(footerElement).toHaveTextContent(testAuthor);
+describe('<Footer />', () => {
+  test('renders Footer component with author prop', () => {
+    const authorName = 'Author Name';
+    render(<Footer author={authorName} />);
+    expect(screen.getByTestId('footer')).toHaveTextContent(
+      `Author: ${authorName}`,
+    );
   });
 
-  test('renders default text when no author prop is provided', () => {
-    render(<Footer />);
-    
-    const footerElement = screen.getByTestId('footer');
-    expect(footerElement).toBeInTheDocument();
-    expect(footerElement).toHaveTextContent('Author: ');
+  test('renders Footer component with copyright notice', () => {
+    render(<Footer author="Author Name" />);
+    expect(screen.getByTestId('footer')).toHaveTextContent('© 2023');
   });
 });

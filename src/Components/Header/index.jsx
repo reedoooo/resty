@@ -1,7 +1,6 @@
-
 import './Header.scss';
 
-function AppHeader () {
+function AppHeader() {
   return (
     <header data-testid="header">
       <h1>RESTy (ygoprodeck)</h1>

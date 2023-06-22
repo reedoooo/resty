@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // let caribbeanGreen = '#02C39A';
 let independence = '#514A9D';
@@ -9,10 +9,10 @@ let buff = '#F3D9B1';
 let radicalRed = '#FF3F71';
 
 module.exports = {
-    main: `line-height:1.3;color:${buff};background:${richBlack};overflow:auto;`,
-    error: `line-height:1.3;color:${buff};background:${richBlack};overflow:auto;`,
-    key: `color:${roseVale};`,
-    string: `color:${independence};`,
-    value: `color:${electricPurple};`,
-    boolean: `color:${radicalRed};`,
+  main: `line-height:1.3;color:${buff};background:${richBlack};overflow:auto;`,
+  error: `line-height:1.3;color:${buff};background:${richBlack};overflow:auto;`,
+  key: `color:${roseVale};`,
+  string: `color:${independence};`,
+  value: `color:${electricPurple};`,
+  boolean: `color:${radicalRed};`,
 };

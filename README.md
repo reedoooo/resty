@@ -68,6 +68,30 @@ This application follows best practices for structuring a React app:
 - CSS and SCSS files are located in their respective component directories or the global `styles` directory.
 - Helper functions are located in the `utils` directory.
 
+## Updates and Improvements
+
+In addition to the existing functionalities, several new updates and improvements have been made to the application. Here are the details:
+
+### 1. Auto-Updating URL
+
+When switching between different APIs using the selection menu, the URL input now automatically updates to match the default endpoint for the selected API. This allows for faster and more intuitive usage.
+
+This functionality was achieved by adding a state for `endpointUrl` in the `UserInputForm` component, and updating this state whenever a different API is selected from the dropdown.
+
+### 2. Improved Error Handling for JSON Inputs
+
+The application now features improved error handling for invalid JSON inputs in the Request Body input field. This reduces the chance of errors being caused by malformed JSON. If an invalid JSON input is detected, an error message is logged to the console.
+
+This was implemented by adding a try-catch block around the JSON parsing in the `manageRequestBody` function, which updates the `requestBodyContent` state with the parsed JSON or logs an error if the parsing fails.
+
+### 3. Resetting Radio Buttons on Form Submission
+
+Previously, the method selection (GET, POST, PUT, DELETE) radio buttons remained selected after form submission, which could lead to confusion. They now get reset along with the rest of the form fields when the form is submitted.
+
+This was implemented by adding a new state `selectedMethod` to track which method is currently selected. The `selectedMethod` state is updated whenever a different method is selected, and reset to an empty string in the `handleFormSubmission` function. The `checked` prop of each radio button is controlled by whether `selectedMethod` matches the `id` of the radio button.
+
+These improvements were made in response to user feedback and testing, and they greatly enhance the usability and reliability of the application.
+
 ## Learning More
 
 For more information on Create React App, see the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

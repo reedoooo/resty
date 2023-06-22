@@ -1,9 +1,11 @@
 // import React from 'react';
 
-import './Footer.scss'
+import './Footer.scss';
 
-function Footer (props) {
-  return <footer data-testid="footer">&copy; 2023 | Author: {props.author}</footer>;
+function Footer(props) {
+  return (
+    <footer data-testid="footer">&copy; 2023 | Author: {props.author}</footer>
+  );
 }
 
 export default Footer;

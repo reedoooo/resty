@@ -1,22 +1,23 @@
-import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { useState } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
 function PreviousRequests({ data, loadHistory }) {
   const [displayModal, updateDisplayModal] = useState(false);
 
   const getApiName = (url) => {
     if (url.includes('pokeapi.co')) {
-      return "Pokemon";
+      return 'Pokemon';
     } else if (url.includes('ygoprodeck.com')) {
-      return "Yu-Gi-Oh";
+      return 'Yu-Gi-Oh';
     } else {
-      return "Unknown API";
+      return 'Unknown API';
     }
   };
 
   return (
     <>
       <Button
+        className="custom-button"
         onClick={() => {
           updateDisplayModal(!displayModal);
         }}
@@ -38,20 +39,20 @@ function PreviousRequests({ data, loadHistory }) {
             <div
               key={index}
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                margin: "0.5rem 0",
+                display: 'flex',
+                justifyContent: 'space-between',
+                margin: '0.5rem 0',
               }}
             >
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  width: "90%",
-                  overflowX: "hidden",
+                  display: 'flex',
+                  justifyContent: 'flex-start',
+                  width: '90%',
+                  overflowX: 'hidden',
                 }}
               >
-                <strong style={{ marginRight: "0.5rem" }}>
+                <strong style={{ marginRight: '0.5rem' }}>
                   {entry.request.method} ({getApiName(entry.request.url)})
                 </strong>
                 <p>{entry.request.url}</p>

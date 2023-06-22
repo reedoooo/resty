@@ -1,16 +1,15 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Header from './index.jsx';
+import '@testing-library/jest-dom/extend-expect';
+import AppHeader from './index.jsx';
 
-describe('Header component', () => {
-  test('renders the header', () => {
-    render(<Header />);
-    const headerElement = screen.getByTestId('header');
-    expect(headerElement).toBeInTheDocument();
-  });
+describe('<AppHeader />', () => {
+  test('renders header and h1', () => {
+    render(<AppHeader />);
 
-  test('displays the correct text', () => {
-    render(<Header />);
-    const headerText = screen.getByText(/RESTy \(ygoprodeck\)/i);
-    expect(headerText).toBeInTheDocument();
+    // Checks if header and h1 exist
+    expect(screen.getByTestId('header')).toBeInTheDocument();
+    expect(screen.getByRole('heading')).toBeInTheDocument();
+    expect(screen.getByText('RESTy (ygoprodeck)')).toBeInTheDocument();
   });
 });

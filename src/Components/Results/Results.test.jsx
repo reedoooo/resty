@@ -1,31 +1,47 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import DataDisplay from './index.jsx';
 
-describe('DataDisplay component', () => {
-  test('displays loading indicator when isLoading is true', () => {
-    render(<DataDisplay isLoading={true} />);
-    const loadingIndicator = screen.getByText(/loading/i);
-    expect(loadingIndicator).toBeInTheDocument();
+describe('<DataDisplay />', () => {
+  test('renders DataFetchingIndicator when isLoading is true', () => {
+    render(<DataDisplay isLoading={true} data={null} />);
+    expect(screen.getByTestId('data-fetching-indicator')).toBeInTheDocument();
   });
 
-  test('displays data when provided and isLoading is false', () => {
-    const data = {
+  test('renders Pokemon names when given Pokemon API data', () => {
+    const mockPokemonData = {
+      request: {
+        url: 'https://pokeapi.co/api/v2/pokemon',
+      },
       response: {
-        data: [
-          { name: 'Test data 1' },
-          { name: 'Test data 2' },
+        results: [
+          { name: 'bulbasaur' },
+          { name: 'ivysaur' },
+          // Add more mock Pokemon data as needed
         ],
       },
     };
-    render(<DataDisplay isLoading={false} data={data} />);
-    const dataElement1 = screen.getByText('Test data 1');
-    const dataElement2 = screen.getByText('Test data 2');
-    expect(dataElement1).toBeInTheDocument();
-    expect(dataElement2).toBeInTheDocument();
+
+    render(<DataDisplay isLoading={false} data={mockPokemonData} />);
+    expect(screen.getByText('bulbasaur')).toBeInTheDocument();
+    expect(screen.getByText('ivysaur')).toBeInTheDocument();
   });
 
-  test('does not display data when no data is provided', () => {
-    render(<DataDisplay isLoading={false} data={null} />);
-    expect(screen.queryByTestId('data-display')).toBeEmptyDOMElement();
+  test('renders Yugioh names when given Yugioh API data', () => {
+    const mockYugiohData = {
+      request: {
+        url: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+      },
+      response: [
+        { name: 'Dark Magician' },
+        { name: 'Blue-Eyes White Dragon' },
+        // Add more mock Yugioh data as needed
+      ],
+    };
+
+    render(<DataDisplay isLoading={false} data={mockYugiohData} />);
+    expect(screen.getByText('Dark Magician')).toBeInTheDocument();
+    expect(screen.getByText('Blue-Eyes White Dragon')).toBeInTheDocument();
   });
 });
