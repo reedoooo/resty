@@ -19,9 +19,7 @@ module.exports = {
     '^.+\\.(js|jsx)?$': 'babel-jest',
   },
 
-  transformIgnorePatterns: [
-    "/node_modules/(?!axios).+\\.js$"
-  ],
+  transformIgnorePatterns: ['/node_modules/(?!axios).+\\.js$'],
 
   // Module file extensions for importing
   moduleFileExtensions: ['js', 'json', 'jsx', 'node'],

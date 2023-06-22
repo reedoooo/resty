@@ -1,5 +1,5 @@
 $backgroundColor: #f5f5f5;
-@import "/src/Style/ThemeColors.scss";
+@import '/src/Style/ThemeColors.scss';
 
 html,
 body {
@@ -22,7 +22,11 @@ body {
 }
 
 .custom-button {
-  background: linear-gradient(to right, $electricPurple, $buff); // set the background gradient you want
+  background: linear-gradient(
+    to right,
+    $electricPurple,
+    $buff
+  ); // set the background gradient you want
   color: $buff; // set the text color you want
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); // add shadow to the button
 }
