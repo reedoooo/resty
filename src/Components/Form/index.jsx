@@ -1,26 +1,23 @@
 import { useState } from 'react';
 import { Button, Container, Form as BsForm } from 'react-bootstrap';
+import Select from 'react-select'; // don't forget to install this
 import './Form.scss';
 
-function UserInputForm({ handleApiCall }) {
-  const [selectedMethod, setSelectedMethod] = useState('');
-
+function UserInputForm({ handleApiCall, apiEndpointsData }) {
   const [endpointUrl, updateEndpointUrl] = useState('');
   const [apiMethod, updateApiMethod] = useState('');
   const [requestBodyContent, updateRequestBodyContent] = useState('');
   const [requestBodyDisabled, setRequestBodyDisabled] = useState(true);
+  const [jsonError, setJsonError] = useState(null);
+  const [selectedMethod, setSelectedMethod] = useState('');
 
-  // Constants for API urls
-  const API_URLS = {
-    pokeapi: 'https://pokeapi.co/api/v2/pokemon',
-    yugiohapi: 'https://db.ygoprodeck.com/api/v7/cardinfo.php',
+  const manageEndpointSelection = (selectedOption) => {
+    updateEndpointUrl(selectedOption.value);
   };
 
-  const manageApiSelection = (event) => {
-    const selectedApiUrl = API_URLS[event.target.value];
-    updateEndpointUrl(''); // Clear out the previous URL
-    updateEndpointUrl(selectedApiUrl); // Update to the newly selected API URL
-  };
+  const options = apiEndpointsData.map((endpoint) => {
+    return { value: endpoint.url, label: endpoint.name };
+  });
 
   const manageUrlInput = (event) => {
     updateEndpointUrl(event.target.value);
@@ -28,7 +25,7 @@ function UserInputForm({ handleApiCall }) {
 
   const manageMethodSelection = (event) => {
     const method = event.target.id.toUpperCase();
-    setSelectedMethod(event.target.id); // Add this line
+    setSelectedMethod(event.target.id);
     updateApiMethod(method);
     setRequestBodyDisabled(!['PUT', 'POST'].includes(method));
   };
@@ -38,14 +35,16 @@ function UserInputForm({ handleApiCall }) {
     try {
       const json = JSON.parse(value);
       updateRequestBodyContent(json);
+      setJsonError(null);
     } catch (error) {
       console.error('Invalid JSON input');
+      updateRequestBodyContent(null);
+      setJsonError('Invalid JSON input');
     }
   };
 
   const handleFormSubmission = async (event) => {
     event.preventDefault();
-
     const requestDetails = {
       method: apiMethod,
       url: endpointUrl,
@@ -66,19 +65,31 @@ function UserInputForm({ handleApiCall }) {
     updateApiMethod('');
     updateRequestBodyContent('');
     setRequestBodyDisabled(true);
-    setSelectedMethod(''); // Add this line
   };
 
   return (
     <BsForm data-testid={'api-form'} onSubmit={handleFormSubmission}>
+      {/* API Endpoint selection */}
       <Container>
-        <BsForm.Label>API Selection:</BsForm.Label>
-        <BsForm.Control as="select" onChange={manageApiSelection}>
-          <option value="">--Select an API--</option>
-          <option value="pokeapi">Pokemon API</option>
-          <option value="yugiohapi">Yugioh API</option>
-        </BsForm.Control>
+        <BsForm.Label>API Endpoint:</BsForm.Label>
+        <Select
+          options={options}
+          isSearchable={true}
+          onChange={manageEndpointSelection}
+          value={options.find((option) => option.value === endpointUrl)}
+        />
       </Container>
+
+      {/* API Endpoint selection
+      <Container>
+        <BsForm.Label>API Endpoint:</BsForm.Label>
+        <Select
+          options={options}
+          isSearchable={true}
+          onChange={manageEndpointSelection}
+          value={options.find((option) => option.value === endpointUrl)}
+        />
+      </Container> */}
       <Container>
         <BsForm.Label>URL:</BsForm.Label>
         <div style={{ display: 'flex' }}>
@@ -102,6 +113,8 @@ function UserInputForm({ handleApiCall }) {
           disabled={requestBodyDisabled}
           id="body-content"
         />
+        {/* Display JSON parsing error if it exists */}
+        {jsonError && <p style={{ color: 'red' }}>{jsonError}</p>}
       </Container>
       <Container
         className="methods"

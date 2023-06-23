@@ -20,7 +20,7 @@ The key parts of the application are:
 To get started, clone this repository to your local machine.
 
 \`\`\`
-git clone https://github.com/yourusername/API-Explorer.git
+git clone <https://github.com/yourusername/API-Explorer.git>
 \`\`\`
 
 In the project directory, install the required dependencies:
