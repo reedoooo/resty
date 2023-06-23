@@ -170,28 +170,18 @@ function MainApp() {
         </Container>
 
         <Container className="data-display-container">
-          <div className="request-info">
-            <p>
-              URL:{' '}
-              {currentRequest &&
-                currentRequest.request &&
-                currentRequest.request.url}
-            </p>
-            <p>
-              Request Method:{' '}
-              {currentRequest &&
-                currentRequest.request &&
-                currentRequest.request.method}
-            </p>
-          </div>
-          <DataDisplay data={currentRequest} isLoading={state.isLoading} />
+          <DataDisplay
+            data={currentRequest}
+            isLoading={state.isLoading}
+            currentRequest={currentRequest}
+          />
         </Container>
-      </Container>
 
-      <PreviousRequests
-        data={state.pastRequests.slice(1)}
-        loadHistory={fetchHistory}
-      />
+        <PreviousRequests
+          data={state.pastRequests.slice(1)}
+          loadHistory={fetchHistory}
+        />
+      </Container>
 
       <Footer creator={'Reed Vogt'} />
     </section>

@@ -1,7 +1,7 @@
 import DataFetchingIndicator from '../Loading';
 import './Results.scss';
 
-function DataDisplay({ isLoading, data }) {
+function DataDisplay({ isLoading, data, currentRequest }) {
   const renderNames = () => {
     if (data && data.response) {
       console.log(data.response); // Log the response to see its structure
@@ -30,6 +30,20 @@ function DataDisplay({ isLoading, data }) {
 
   return (
     <div data-testid={'data-display'} style={{ height: '75vh' }}>
+      <div className="request-info">
+        <p>
+          URL:{' '}
+          {currentRequest &&
+            currentRequest.request &&
+            currentRequest.request.url}
+        </p>
+        <p>
+          Request Method:{' '}
+          {currentRequest &&
+            currentRequest.request &&
+            currentRequest.request.method}
+        </p>
+      </div>
       {isLoading ? <DataFetchingIndicator /> : renderNames()}
     </div>
   );

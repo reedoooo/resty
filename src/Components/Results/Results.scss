@@ -1,11 +1,62 @@
 @import '/src/Style/ThemeColors.scss';
 
-section {
-  // background: $richBlack;
-  height: inherit;
-  overflow-y: scroll;
+$backgroundColor: #efefef;
+$radius: 2%;
+$transitionTime: 0.3s;
+$primaryColor: #2c3e50;
+$secondaryColor: #3498db;
+$scrollbarColor: $secondaryColor;
+$scrollbarWidth: 8px;
 
-  pre {
-    // color: $pokeRed;
+[data-testid='data-display'] {
+  display: grid;
+  // align-items: center;
+  // justify-items: center;
+  grid-gap: 20px;
+  height: 100%;
+  // width: 100%;
+  // min-width: 10vw;
+  flex-grow: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  border-radius: $radius;
+  background-color: $backgroundColor;
+
+  // Custom Scrollbar
+  &::-webkit-scrollbar {
+    width: $scrollbarWidth;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $scrollbarColor;
+    border-radius: $radius;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: darken($scrollbarColor, 20%);
+  }
+
+  // Loading Indicator Style
+  .loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  // Data Style
+  p {
+    font-size: 1.2rem;
+    color: $primaryColor;
+    transition: color $transitionTime ease-in-out;
+
+    &:hover {
+      color: $secondaryColor;
+    }
   }
 }

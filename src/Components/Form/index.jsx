@@ -68,53 +68,49 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
   };
 
   return (
-    <BsForm data-testid={'api-form'} onSubmit={handleFormSubmission}>
+    <BsForm
+      data-testid={'api-form'}
+      onSubmit={handleFormSubmission}
+      // style={{ height: '75vh' }}
+    >
       {/* API Endpoint selection */}
-      <Container>
-        <BsForm.Label>API Endpoint:</BsForm.Label>
-        <Select
-          options={options}
-          isSearchable={true}
-          onChange={manageEndpointSelection}
-          value={options.find((option) => option.value === endpointUrl)}
-        />
-      </Container>
-
-      {/* API Endpoint selection
-      <Container>
-        <BsForm.Label>API Endpoint:</BsForm.Label>
-        <Select
-          options={options}
-          isSearchable={true}
-          onChange={manageEndpointSelection}
-          value={options.find((option) => option.value === endpointUrl)}
-        />
-      </Container> */}
-      <Container>
-        <BsForm.Label>URL:</BsForm.Label>
-        <div style={{ display: 'flex' }}>
-          <BsForm.Control
-            type="text"
-            name="url"
-            value={endpointUrl}
-            onChange={manageUrlInput}
+      <Container className="formInput">
+        <Container>
+          <BsForm.Label>API Endpoint:</BsForm.Label>
+          <Select
+            options={options}
+            isSearchable={true}
+            onChange={manageEndpointSelection}
+            value={options.find((option) => option.value === endpointUrl)}
           />
-        </div>
-      </Container>
-      <Container>
-        <BsForm.Label>Request Body</BsForm.Label>
-        <BsForm.Control
-          as="textarea"
-          rows={20}
-          placeholder='{
-            "key":"value"
-            }'
-          onChange={manageRequestBody}
-          disabled={requestBodyDisabled}
-          id="body-content"
-        />
-        {/* Display JSON parsing error if it exists */}
-        {jsonError && <p style={{ color: 'red' }}>{jsonError}</p>}
+        </Container>
+
+        <Container>
+          <BsForm.Label>URL:</BsForm.Label>
+          <div style={{ display: 'flex' }}>
+            <BsForm.Control
+              type="text"
+              name="url"
+              value={endpointUrl}
+              onChange={manageUrlInput}
+            />
+          </div>
+        </Container>
+        <Container>
+          <BsForm.Label>Request Body</BsForm.Label>
+          <BsForm.Control
+            as="textarea"
+            rows={20}
+            placeholder='{
+              "key":"value"
+              }'
+            onChange={manageRequestBody}
+            disabled={requestBodyDisabled}
+            id="body-content"
+          />
+          {/* Display JSON parsing error if it exists */}
+          {jsonError && <p style={{ color: 'red' }}>{jsonError}</p>}
+        </Container>
       </Container>
       <Container
         className="methods"
