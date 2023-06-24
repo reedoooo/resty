@@ -2,14 +2,15 @@
   "api": [
     {
       "yugioh": {
+        "type": "ygoprodeck",
         "endpoints": [
           {
             "name": "AllCardsEndpoint",
             "url": "https://db.ygoprodeck.com/api/v7/cardinfo.php"
           },
           {
-            "name": "SingleCardEndpoint",
-            "url": "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark Magician"
+            "name": "SingleCardEndpoint(example)",
+            "url": "https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Decode%20Talker"
           },
           {
             "name": "RandomCardEndpoint",
@@ -50,6 +51,7 @@
         ]
       },
       "pokemon": {
+        "type": "pokeapi",
         "endpoints": [
           {
             "name": "Named",

@@ -1,35 +1,29 @@
+import React from 'react';
 import DataFetchingIndicator from '../Loading';
 import './Results.scss';
 
 function DataDisplay({ isLoading, data, currentRequest }) {
-  const renderNames = () => {
+  const renderData = () => {
     if (data && data.response) {
       console.log(data.response); // Log the response to see its structure
 
-      // Check which API we are dealing with
-      if (
-        data.request.url.includes('pokeapi.co') &&
-        data.response.results &&
-        Array.isArray(data.response.results)
-      ) {
-        // Handle Pokemon API data structure
-        return data.response.results
-          .slice(0, 20)
-          .map((item, index) => <p key={index}>{item.name}</p>);
-      } else if (
-        data.request.url.includes('ygoprodeck.com') &&
-        Array.isArray(data.response)
-      ) {
-        // Handle Yugioh API data structure
-        return data.response.map((item, index) => (
-          <p key={index}>{item.name}</p>
-        ));
+      if (typeof data.response === 'object') {
+        return (
+          <div>
+            <h2>Response:</h2>
+            <pre>{JSON.stringify(data.response, null, 2)}</pre>
+          </div>
+        );
       }
+
+      return <p>{data.response}</p>;
     }
+
+    return null;
   };
 
   return (
-    <div data-testid={'data-display'} style={{ height: '75vh' }}>
+    <div data-testid={'data-display'}>
       <div className="request-info">
         <p>
           URL:{' '}
@@ -44,7 +38,7 @@ function DataDisplay({ isLoading, data, currentRequest }) {
             currentRequest.request.method}
         </p>
       </div>
-      {isLoading ? <DataFetchingIndicator /> : renderNames()}
+      {isLoading ? <DataFetchingIndicator /> : renderData()}
     </div>
   );
 }

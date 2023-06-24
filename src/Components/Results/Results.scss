@@ -1,62 +1,32 @@
-@import '/src/Style/ThemeColors.scss';
+@import '../../AppStyles.scss';
+// ./Results.scss
+$results-bg-color: #9d4a8b;
+$results-text-color: $white;
+.data-display {
+  background: linear-gradient(#02c39a, #2ec4b6);
+  border-radius: 10px;
+  padding: 20px;
+  color: $white;
+  margin-top: 20px;
 
-$backgroundColor: #efefef;
-$radius: 2%;
-$transitionTime: 0.3s;
-$primaryColor: #2c3e50;
-$secondaryColor: #3498db;
-$scrollbarColor: $secondaryColor;
-$scrollbarWidth: 8px;
-
-[data-testid='data-display'] {
-  display: grid;
-  // align-items: center;
-  // justify-items: center;
-  grid-gap: 20px;
-  height: 100%;
-  // width: 100%;
-  // min-width: 10vw;
-  flex-grow: 1;
-  padding: 1rem;
-  overflow-y: auto;
-  border-radius: $radius;
-  background-color: $backgroundColor;
-
-  // Custom Scrollbar
-  &::-webkit-scrollbar {
-    width: $scrollbarWidth;
+  .request-info {
+    font-weight: bold;
   }
 
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    border-radius: $radius;
-  }
+  transition: all 0.3s ease-in-out;
 
-  &::-webkit-scrollbar-thumb {
-    background: $scrollbarColor;
-    border-radius: $radius;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: darken($scrollbarColor, 20%);
-  }
-
-  // Loading Indicator Style
-  .loading-indicator {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-  }
-
-  // Data Style
-  p {
-    font-size: 1.2rem;
-    color: $primaryColor;
-    transition: color $transitionTime ease-in-out;
-
-    &:hover {
-      color: $secondaryColor;
-    }
+  &:hover {
+    transform: scale(1.02);
   }
 }
+// .data-display {
+//     background-color: $results-bg-color;
+//     border-radius: 10px;
+//     padding: 20px;
+//     color: $results-text-color;
+//     margin-top: 20px;
+
+//     .request-info {
+//         font-weight: bold;
+//     }
+// }

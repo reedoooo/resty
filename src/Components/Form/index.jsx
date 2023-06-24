@@ -11,12 +11,12 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
   const [jsonError, setJsonError] = useState(null);
   const [selectedMethod, setSelectedMethod] = useState('');
 
-  const manageEndpointSelection = (selectedOption) => {
-    updateEndpointUrl(selectedOption.value);
-  };
-
+  console.log('updated endpoint data:', endpointUrl);
   const options = apiEndpointsData.map((endpoint) => {
-    return { value: endpoint.url, label: endpoint.name };
+    return {
+      value: endpoint.url,
+      label: endpoint.name,
+    };
   });
 
   const manageUrlInput = (event) => {
@@ -44,6 +44,7 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
   };
 
   const handleFormSubmission = async (event) => {
+    console.log('Form submitted', endpointUrl);
     event.preventDefault();
     const requestDetails = {
       method: apiMethod,
@@ -65,6 +66,7 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
     updateApiMethod('');
     updateRequestBodyContent('');
     setRequestBodyDisabled(true);
+    setSelectedMethod(''); // Reset selectedMethod
   };
 
   return (
@@ -80,7 +82,9 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
           <Select
             options={options}
             isSearchable={true}
-            onChange={manageEndpointSelection}
+            onChange={(selectedOption) =>
+              updateEndpointUrl(selectedOption.value)
+            }
             value={options.find((option) => option.value === endpointUrl)}
           />
         </Container>
@@ -96,6 +100,7 @@ function UserInputForm({ handleApiCall, apiEndpointsData }) {
             />
           </div>
         </Container>
+
         <Container>
           <BsForm.Label>Request Body</BsForm.Label>
           <BsForm.Control

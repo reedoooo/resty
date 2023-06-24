@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react';
 import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './AppStyles.scss';
+import './Style/ThemeColors.scss';
 import AppHeader from './Components/Header';
 import { Container } from 'react-bootstrap';
 import endpointData from './Data/endpoint-list.json'; // Import JSON data
@@ -17,22 +17,6 @@ let startState = {
   pastRequests: [],
 };
 
-// const actions = {
-//   updateState: (state, action) => ({ ...state, ...action.payload }),
-// };
-
-// const appReducer = (state, action) => {
-//   const handler = actions[action.type];
-//   return handler ? handler(state, action) : state;
-// };
-// const appReducer = (state, action) => {
-//   switch (action.type) {
-//     case 'updateState':
-//       return { ...state, ...action.payload };
-//     default:
-//       return state;
-//   }
-// };
 const appReducer = (state, action) => {
   if (action.type === 'updateState') {
     return { ...state, ...action.payload };
@@ -53,18 +37,14 @@ function MainApp() {
     fetchApiEndpointsData();
   }, []);
 
-  const handleResponse = (response, url) => {
-    if (url.includes('ygoprodeck.com')) {
-      return response.data.data || response.data;
-    }
+  const responseHandlers = {
+    ygoprodeck: (response) => response.data.data || response.data,
+    pokeapi: (response) => response.data.pokemon || response.data,
+  };
 
-    if (url.includes('pokeapi.co')) {
-      // handle PokemonAPI response here
-      return response.data.pokemon || response.data;
-    }
-
-    // default response handling
-    return response;
+  const handleResponse = (response, type) => {
+    const handler = responseHandlers[type];
+    return handler ? handler(response) : response;
   };
 
   const performApiRequest = async (params) => {
@@ -72,6 +52,7 @@ function MainApp() {
 
     let axiosRequestParams = {
       method: params.method,
+      // Using the exact URL as provided by the user in the form
       url: params.url,
     };
 
@@ -81,7 +62,7 @@ function MainApp() {
 
     try {
       const response = await axios(axiosRequestParams);
-      const handledResponse = handleResponse(response, params.url);
+      const handledResponse = handleResponse(response, params.type);
 
       const newRequest = {
         request: {
@@ -101,7 +82,7 @@ function MainApp() {
         },
       });
     } catch (error) {
-      dispatch({ type: 'updateState', payload: { isLoading: false } }); // Adding this line
+      dispatch({ type: 'updateState', payload: { isLoading: false } });
       console.error(error);
     }
   };
@@ -109,11 +90,10 @@ function MainApp() {
   function transformApiData(apiData) {
     let endpoints = [];
 
-    for (let game in apiData) {
-      // Iterate over 'yugioh' and 'pokemon'
-      apiData[game].endpoints.forEach((endpoint) => {
+    for (let gameType in apiData) {
+      apiData[gameType].endpoints.forEach((endpoint) => {
         endpoints.push({
-          name: `${game}-${endpoint.name}`,
+          name: `${gameType}-${endpoint.name}`,
           url: endpoint.url,
         });
       });

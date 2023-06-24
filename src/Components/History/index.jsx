@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
+import './History.scss';
 
 function PreviousRequests({ data, loadHistory }) {
   const [displayModal, updateDisplayModal] = useState(false);
@@ -15,7 +16,9 @@ function PreviousRequests({ data, loadHistory }) {
   };
 
   return (
-    <>
+    <div className="previous-requests">
+      {' '}
+      {/* Apply the main style here */}
       <Button
         className="custom-button"
         onClick={() => {
@@ -24,7 +27,6 @@ function PreviousRequests({ data, loadHistory }) {
       >
         Request Log
       </Button>
-
       <Modal
         show={displayModal}
         onHide={() => {
@@ -72,7 +74,7 @@ function PreviousRequests({ data, loadHistory }) {
 
         <Modal.Footer>Footer section</Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 }
 

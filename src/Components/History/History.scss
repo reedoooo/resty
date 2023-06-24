@@ -1,0 +1,31 @@
+@import '../../AppStyles.scss';
+
+// ./PreviousRequests.scss
+
+$bg-color: #1d2d44;
+$text-color: #f3d9b1;
+
+.previous-requests {
+  .custom-button {
+    background-color: darken($bg-color, 5%);
+    color: $text-color;
+    border: none;
+  }
+
+  .modal-header, .modal-footer {
+    background-color: lighten($bg-color, 10%);
+    color: $text-color;
+  }
+
+  .modal-body {
+    background-color: $bg-color;
+    color: $text-color;
+
+    div {
+      border: 1px solid lighten($bg-color, 15%);
+      border-radius: 5px;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+}

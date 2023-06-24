@@ -1,0 +1,136 @@
+{
+  "api": [
+    {
+      "yugioh": {
+        "type": "ygoprodeck",
+        "endpoints": [
+          {
+            "name": "AllCardsEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php"
+          },
+          {
+            "name": "SingleCardEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php?name=Dark Magician"
+          },
+          {
+            "name": "RandomCardEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php"
+          },
+          {
+            "name": "SetCardEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php?setcode=LOB"
+          },
+          {
+            "name": "ArchetypeEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php"
+          },
+          {
+            "name": "CardSetsEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php"
+          },
+          {
+            "name": "SetEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v7/{endpoint}.php?setcode=LOB"
+          },
+          {
+            "name": "BanlistEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v1/{endpoint}_info.php"
+          },
+          {
+            "name": "StapleEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v1/{endpoint}_info.php"
+          },
+          {
+            "name": "DeckEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v1/{endpoint}_types.php"
+          },
+          {
+            "name": "CardRulingsEndpoint",
+            "url": "https://db.ygoprodeck.com/api/v1/{endpoint}.php?cardid=46986414"
+          }
+        ]
+      },
+      "pokemon": {
+        "type": "pokeapi",
+        "endpoints": [
+          {
+            "name": "Named",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/"
+          },
+          {
+            "name": "Berries",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Berry Firmnesses",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Berry Flavors",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Contest Types",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Contest Effects",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id}"
+          },
+          {
+            "name": "Super Contest Effects",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id}"
+          },
+          {
+            "name": "Encounter Methods",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Encounter Conditions",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Encounter Condition Values",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Evolution Chains",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id}"
+          },
+          {
+            "name": "Evolution Triggers",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Generations",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Pokedexes",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Version Groups",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Item Attributes",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Item Categories",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Item Fling Effects",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          },
+          {
+            "name": "Item Pockets",
+            "url": "https://pokeapi.co/api/v2/{endpoint}/{id or name}"
+          }
+        ]
+      }
+    }
+  ]
+}
