@@ -24,22 +24,7 @@
   "rules": {
     "no-console": "off",
     "indent": ["error", 2],
-    "@typescript-eslint/indent": [
-      "error",
-      2,
-      {
-          "CallExpression": {
-              "arguments": "first"
-          },
-          "FunctionDeclaration": {
-              "parameters": "first"
-          },
-          "FunctionExpression": {
-              "parameters": "first"
-          },
-          "offsetTernaryExpressions": true
-      }
-  ],
+    "@typescript-eslint/indent": "off",
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "semi": ["error", "always"],

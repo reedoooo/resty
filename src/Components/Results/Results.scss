@@ -1,11 +1,32 @@
-@import '/src/Style/ThemeColors.scss';
+@import '../../AppStyles.scss';
+// ./Results.scss
+$results-bg-color: #9d4a8b;
+$results-text-color: $white;
+.data-display {
+  background: linear-gradient(#02c39a, #2ec4b6);
+  border-radius: 10px;
+  padding: 20px;
+  color: $white;
+  margin-top: 20px;
 
-section {
-  // background: $richBlack;
-  height: inherit;
-  overflow-y: scroll;
+  .request-info {
+    font-weight: bold;
+  }
 
-  pre {
-    // color: $pokeRed;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
   }
 }
+// .data-display {
+//     background-color: $results-bg-color;
+//     border-radius: 10px;
+//     padding: 20px;
+//     color: $results-text-color;
+//     margin-top: 20px;
+
+//     .request-info {
+//         font-weight: bold;
+//     }
+// }
